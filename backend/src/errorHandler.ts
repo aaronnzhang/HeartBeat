@@ -2,7 +2,7 @@ import Application from "koa";
 import { PlatformTypeError } from "./types/PlatformTypeError";
 import { SettingMissingError } from "./types/SettingMissingError";
 import { ThereIsNoCardsInDoneColumn } from "./types/ThereIsNoCardsInDoneColumn";
-import {LackRequiredDataError} from "./types/LackRequiredDataError";
+import { LackRequiredDataError } from "./types/LackRequiredDataError";
 
 export default () => async (
   ctx: Application.ExtendableContext & {

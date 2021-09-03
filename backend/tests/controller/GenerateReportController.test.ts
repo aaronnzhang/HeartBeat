@@ -50,6 +50,34 @@ describe("GenerateReporter", () => {
         .request(app)
         .post("/generateReporter")
         .send(mockData);
-    expect(response.status).to.equal(200);
+    expect(response.status).equal(200);
+  }).timeout(10000);
+
+  it("should return 404 when GitHub token is invalid", async () => {
+    const mockDataWithInvalidGitHubToken = {
+      "metrics": ["Lead time for changes"],
+      "startTime": 1630252800000,
+      "endTime": 1630511999000,
+      "considerHoliday": false,
+      "pipeline": {"type": "BuildKite", "token": "9627ef784bd5dac24256bc7d382d6af2ce77a781", "deployment": []},
+      "codebaseSetting": {
+        "type": "Github",
+        "token": "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",
+        "leadTime": [{
+          "orgId": "aaa-11",
+          "orgName": "aaa",
+          "id": "firstpipeline",
+          "name": "firstPipeline",
+          "step": "test",
+          "repository": "git@github.com:gtb-203b-xin-ye/B-basic-quiz.git"
+        }]
+      },
+      "csvTimeStamp": 1630566152884
+    };
+    const response = await chai
+        .request(app)
+        .post("/generateReporter")
+        .send(mockDataWithInvalidGitHubToken);
+    expect(response.status).equal(404);
   }).timeout(10000);
 });
