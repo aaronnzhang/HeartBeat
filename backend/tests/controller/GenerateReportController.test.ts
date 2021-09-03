@@ -10,7 +10,7 @@ import { GenerateReportRequest } from "../../src/contract/GenerateReporter/Gener
 chai.use(chaiHttp);
 chai.should();
 
-describe("GenerateReporter", () => {
+describe.skip("GenerateReporter", () => {
   it.skip("should return 200 and report data when post data correct", async () => {
     const response = await chai
       .request(app)
